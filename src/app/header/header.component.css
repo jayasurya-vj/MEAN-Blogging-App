@@ -1,0 +1,16 @@
+a{
+  text-decoration: none;
+  color:white;
+}
+
+li{
+  list-style: none;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+ul{
+  display:inline-flex;
+}

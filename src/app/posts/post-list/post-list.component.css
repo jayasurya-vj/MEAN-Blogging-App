@@ -1,0 +1,22 @@
+:host{
+  display : block;
+  margin-top:1rem;
+}
+
+.info-post{
+  text-align: center;
+}
+
+.post-image{
+  max-height: 300px;
+  width:100%;
+}
+
+.post-image img{
+  max-height:inherit;
+  box-shadow: 1px 1px;
+}
+
+mat-paginator{
+  margin-top:1rem;
+}
