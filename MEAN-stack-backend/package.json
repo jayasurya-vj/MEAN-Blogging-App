@@ -1,0 +1,22 @@
+{
+  "name": "app-mean",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "http": "0.0.1-security",
+    "mongoose": "^6.3.0",
+    "mongoose-unique-validator": "^3.0.0",
+    "multer": "^1.4.4"
+  },
+  "emgines": {
+    "node": ">=10.0.0"
+  }
+}

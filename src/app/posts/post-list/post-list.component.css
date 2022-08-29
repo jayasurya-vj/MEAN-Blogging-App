@@ -20,3 +20,10 @@
 mat-paginator{
   margin-top:1rem;
 }
+
+@media (max-width: 740px) {
+  .post-image img{
+    width:100%; 
+  }
+  
+}

@@ -50,9 +50,17 @@ export class AuthService{
             email: email,
             password: password
         }
-        this.http.post(this.domain + "/api/user/signup",authData).subscribe(response=>{
-            console.log(response);
-            this.router.navigate(["/"]);
+        this.http.post<{message:string,token:string,expiresIn:number, userId:string}>(this.domain + "/api/user/signup",authData).subscribe(response=>{
+            this.token=response.token;
+            if(this.token && response.expiresIn){                
+                this.setLogoutTimer(response.expiresIn);
+                let expiryDate = new Date( new Date().getTime() + response.expiresIn*1000); 
+                // console.log(expiryDate);
+                this.setAuth(this.token,expiryDate,response.userId);
+                this._isAuth=true;
+                this.isAuthenticated.next(true);
+                this.router.navigate(["/"]);
+            }
         },error=>{
             this.isAuthenticated.next(false);
         });
