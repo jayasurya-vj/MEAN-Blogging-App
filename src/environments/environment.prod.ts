@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiDomain: "https://www.blog-backend.vercel.app"
+  apiDomain: "https://www.blogging-backend.vercel.app"
 };
