@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiDomain: "https://blogging-backend.vercel.app"
+  apiDomain: "https://bloggy-backend.cyclic.app"
 };
