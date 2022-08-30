@@ -30,7 +30,7 @@ export class PostsService{
         title:post.title,
         content: post.content,
         id: post._id,
-        imagePath: post.imagePath,
+        // imagePath: post.imagePath,
         creator: post.creator
     }});
     return data;
@@ -47,27 +47,31 @@ export class PostsService{
     return this.http.get<{message:string,post:any}>(this.domain+"/api/posts/"+id);
   }
 
-  addPost(title:string, content:string, image:File){
-    let postData= new FormData();
-    postData.append("title", title);
-    postData.append("content", content);
-    postData.append("image", image,title);
+  addPost(title:string, content:string){ //, image:File
+    // let postData= new FormData();
+    // postData.append("title", title);
+    // postData.append("content", content);
+    // postData.append("image", image,title);
+    
+
+    let postData:Post={title:title,content:content};
+    console.log(postData);
     this.http.post<{message:string,post:Post}>(this.domain+"/api/posts",postData).subscribe(data=>{
       this.router.navigate(["/"]);
     });
   }
 
-  updatePost(title:string, content:string,postId:string, image:File |string){
+  updatePost(title:string, content:string,postId:string){ //, image:File |string
     let postData;
-    if(typeof image == "object"){
+   /* if(typeof image == "object"){
       postData= new FormData();
       postData.append("_id", postId);
     postData.append("title", title);
     postData.append("content", content);
-    postData.append("image", image,title);
-    }else{
-       postData = {_id:postId,title:title,content:content,imagePath:image};
-    }
+     postData.append("image", image,title);
+    }else{ */
+       postData = {_id:postId,title:title,content:content}; //,imagePath:image
+    // }
     this.http.put<{message:string}>(this.domain+"/api/posts/"+postId,postData).subscribe(data=>{
       this.router.navigate(["/"]);
     });

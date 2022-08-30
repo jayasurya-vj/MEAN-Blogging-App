@@ -39,15 +39,16 @@ export class CreatePostsComponent implements OnInit,OnDestroy {
           this.post= {
             id:data.post._id,
             title:data.post.title,
-            content:data.post.content,
-            imagePath:data.post.imagePath
+            content:data.post.content
+            // ,
+            // imagePath:data.post.imagePath
           }
           this.form.setValue({
             title:data.post.title,
             content:data.post.content,
-            image:data.post.imagePath
+            // image:data.post.imagePath
           })
-           this.imagePreview=data.post.imagePath;
+          //  this.imagePreview=data.post.imagePath;
         });
 
       }else{
@@ -68,22 +69,22 @@ export class CreatePostsComponent implements OnInit,OnDestroy {
     this.form = new FormGroup({
       'title': new FormControl(null,{validators:[Validators.required,Validators.minLength(3)]}),
       'content': new FormControl(null,{validators:[Validators.required]}),
-      'image': new FormControl(null,{validators:[Validators.required],
-      asyncValidators: [mimeType]})
+      // 'image': new FormControl(null,{validators:[Validators.required],
+      // asyncValidators: [mimeType]})
     })
   }
 
-  onImagePicked(event:Event){
-    const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({image:file});
-    this.form.get('image').updateValueAndValidity();
-    const reader=new FileReader();
-    reader.onload =  ()=> {
-      this.imagePreview = reader.result;
-    };
-    reader.readAsDataURL(file);
+  // onImagePicked(event:Event){
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   this.form.patchValue({image:file});
+  //   this.form.get('image').updateValueAndValidity();
+  //   const reader=new FileReader();
+  //   reader.onload =  ()=> {
+  //     this.imagePreview = reader.result;
+  //   };
+  //   reader.readAsDataURL(file);
 
-  }
+  // }
 
   onSavePost(){
     if(this.form.invalid) {
@@ -91,9 +92,9 @@ export class CreatePostsComponent implements OnInit,OnDestroy {
     }
     this.isLoading=true;
     if(this.mode=="create"){
-      this.postsService.addPost(this.form.value.title,this.form.value.content,this.form.value.image);
+       this.postsService.addPost(this.form.value.title,this.form.value.content); //,this.form.value.image
     }else{
-      this.postsService.updatePost(this.form.value.title,this.form.value.content,this.post.id,this.form.value.image);
+      this.postsService.updatePost(this.form.value.title,this.form.value.content,this.post.id); //,this.form.value.image
     }
 
     this.form.reset();
