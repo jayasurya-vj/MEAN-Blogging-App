@@ -2,7 +2,7 @@
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <div *ngIf="!isLoading && isRedirected && isRedirected=='true'" class="notification" role="alert">
-      Please Login to Create/Edit Posts...
+      Please Login to Create/Edit Posts
     </div>
     <form #loginForm="ngForm" (submit)="onLogin(loginForm)" *ngIf="!isLoading">
     <mat-form-field>
@@ -14,6 +14,8 @@
     <mat-error *ngIf="password.invalid">Please enter a post password</mat-error>
   </mat-form-field>
   <button mat-raised-button color="accent" type="submit">Login</button>
+  <a mat-button color="primary" routerLink="/user/signup" routerLinkActive="active">Signup instead</a>
+
   </form>
   </mat-card>
   
