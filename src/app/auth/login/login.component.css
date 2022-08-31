@@ -1,3 +1,9 @@
 mat-form-field{
     width : 100%;
   }
+
+.notification{
+    color: red;
+    margin: 5px 0;
+    font-size:12px;
+  }

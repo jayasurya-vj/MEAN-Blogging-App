@@ -1,6 +1,9 @@
 
 <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div *ngIf="isRedirected && isRedirected=='true'" class="notification" role="alert">
+      Please Login to Create/Edit Posts...
+    </div>
     <form #loginForm="ngForm" (submit)="onLogin(loginForm)" *ngIf="!isLoading">
     <mat-form-field>
       <input matInput ngModel #email="ngModel" type="text" name="email" placeholder="E-mail" required email/>

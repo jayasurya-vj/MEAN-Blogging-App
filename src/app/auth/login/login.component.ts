@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {AuthService} from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,16 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   isLoading=false;
+  isRedirected=null;
   authSub:Subscription;
 
-  constructor(public authService:AuthService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    public authService:AuthService) { 
+      this.activatedRoute.queryParams.subscribe(queryParams => {
+        console.log("redirected from=>",queryParams['redirect']);  
+        this.isRedirected = queryParams['redirect'];
+      });
+  }
 
   
 
